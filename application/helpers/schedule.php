@@ -3,9 +3,13 @@
 	/**
 	* $this->users_model->get_eligible_users($shift->job_type);	returns an array of all users eligible for the specified job_type.
 	* 
-	* $this->shifts_model->get_all_shifts();	return an array of all shifts that need to be filled(shift table)
+	* $this->shifts_model->get_needed_shifts();	return an array of all shifts that need to be filled(shift table)
 	* $this->shifts_model->update_taken_by($shift->id, $user->id);	update a particular shift in the database as taken by a particular user
 	* $this->shifts_model->get_taken_shifts($user->id) return an array of all the shifts that the specified user already has taken
+	* 
+	* NEW FUNCTIONS I ADDED SINCE I LAST PUSHED
+	* $this->shifts_model->get_completed_shifts(); return an array of shifts that are filled and ready to go(I need this to print the schedule)
+	* 
 	*/
 		
 function genSchedule(){
@@ -16,7 +20,7 @@ function genSchedule(){
 	 * 	after the person is selected for the shift, mark the shift as taken in the database by the given person
 	 */
 	
-	$shifts = $this->shifts_model->get_all_shifts();
+	$shifts = $this->shifts_model->get_needed_shifts();
 
 	foreach($shifts as $shift){
 		$usersAvail = $this->whoisAvail($shift); 
@@ -130,6 +134,13 @@ function noConflict($user, $shift){
 		}
 	}
 	return true;
+	
+function printSchedule(){
+	//this will take the list of shifts and print them all out.
+	
+	$shifts = $this->shifts_model->get_completed_shifts();
+}
+
 }
 
 ?>
