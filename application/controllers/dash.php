@@ -28,6 +28,13 @@ class Dash extends MY_Controller {
 		
 		//avail
 	}
+	public function test_job_users($job_id){
+		$this->load->model('users_model');
+		$users = $this->users_model->get_eligible_users($job_id);
+		echo "<pre>";
+		echo var_dump($users);
+		echo "</pre>";
+	}
 
 
 }

@@ -7,8 +7,7 @@ class shifts_model extends CI_Model
 	{
 		$this->load->database();
 	}
-	
-	// $this->shifts_model->get_all_shifts();	
+		
 	/**
 	 * return an array of all shifts that need to be filled(shift table)
 	 * @return result object
@@ -20,8 +19,25 @@ class shifts_model extends CI_Model
 		return $query->result_object();
 	}
 	
+	/**
+	 * return an array of shifts that are filled and ready to go
+	 * 
+	 * @access public
+	 * @author Schuyler Cumbie
+	 * @return list of shifts that are ready to go
+	 */
+	public function get_completed_shifts(){
+		$query = $this->db->get_where('shifts', array('taken' => 1));
+		return $query->result_object();
+	}
+	/**
+	 * get all of the shifts
+	 * @access public
+	 * @author Schuyler Cumbie
+	 * @return result object
+	 */
 	public function get_all_shifts(){
-		$query = $this->db->get_where('users');
+		$query = $this->db->get('shifts');
 		return $query->result_object();
 	}
 	
@@ -30,12 +46,13 @@ class shifts_model extends CI_Model
 	 * 
 	 * @param id of shift $shift_id
 	 * @param if of user $user_id
-	 * @return result object
+	 * @return success boolean
 	 * @access public
 	 * @author Schuyer Cumbie
 	 */
 	public function update_taken_by($shift_id, $user_id){
-		
+		$this->db->update('shifts', array('taken_by' => $user_id), array('id' => $shift_id));
+		return true;
 	}
 	
 	/**
