@@ -1,0 +1,4 @@
+eventhack
+=========
+
+HackNC Competition Project

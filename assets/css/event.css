@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+
+
+.event-text{
+	font-weight:200;
+	font-size: 18px;
+	text-align:center;
+}
+
+.event-date-text {
+	font-weight: 200;
+	font-size: 26px;
+	text-align: center
+	
+}
+
+.event-heading{
+	font-weight:200;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.event-what{
+	height:60%;;
+	background-color:#dff0d8;
+	font-color:black;
+	font-size:20px;
+}
+
+.event-where{
+	height:600px;
+	background-color:#dff0d8;
+	font-color:black;
+	font-size:20px;
+}
+
+.event-when{
+	height:60%%;
+	background-color:white;
+	font-color:black;
+	font-size:20px;
+}
+
+
+	
