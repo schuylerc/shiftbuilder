@@ -83,13 +83,13 @@
   <div class="slide story" id="slide-2" data-slide="2">
     <div class="container">
       <div class="row title-row">
-        <div class="col-12 font-thin">Title</div>
+        <div class="col-12 font-thin">About</div>
       </div><!-- /row -->
       <div class="row line-row">
         <div class="hr">&nbsp;</div>
       </div><!-- /row -->
       <div class="row subtitle-row">
-          <div class="col-12 font-thin">Text.</div>
+          <div class="col-12 font-thin">Shift Builder is...</div>
       </div><!-- /row -->
     </div><!-- /container -->
   </div><!-- /slide2 -->
@@ -98,13 +98,13 @@
   <div class="slide story" id="slide-3" data-slide="3">
     <div class="container">
       <div class="row title-row">
-        <div class="col-12 font-thin">Title</div>
+        <div class="col-12 font-thin">Join us!</div>
       </div><!-- /row -->
       <div class="row line-row">
         <div class="hr">&nbsp;</div>
       </div><!-- /row -->
       <div class="row subtitle-row">
-          <div class="col-12 font-thin">Text.</div>
+          <div class="col-12 font-thin">Register here!</div>
       </div><!-- /row -->
     </div><!-- /container -->
   </div><!-- /slide3 -->
@@ -113,13 +113,13 @@
   <div class="slide story" id="slide-4" data-slide="4">
     <div class="container">
       <div class="row title-row">
-        <div class="col-12 font-thin">Title</div>
+        <div class="col-12 font-thin">Contact us.</div>
       </div><!-- /row -->
       <div class="row line-row">
         <div class="hr">&nbsp;</div>
       </div><!-- /row -->
       <div class="row subtitle-row">
-          <div class="col-12 font-thin">Text.</div>
+          <div class="col-12 font-thin">Email or some other information to be displayed here.</div>
       </div><!-- /row -->
     </div><!-- /container -->
   </div><!-- /slide4 -->

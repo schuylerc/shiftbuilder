@@ -203,14 +203,15 @@ body {
   text-align: center;
 }
 
-#slide-1 {
-  background-image: url('/assets/home_files/Bridge.png');
+#slide-1
+{
+    -webkit-filter: blur(20px);
+  background-image: url('/assets/home_files/background_blur_v2.jpg' );
   color: #ffffff;
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
     -o-background-size: 100%;
     background-size: 100%;
-
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -219,7 +220,6 @@ body {
   background-attachment: relative;
   background-position: center center;
 }
-
 #slide-1 h1 {
   padding-top: 130px;
 }
