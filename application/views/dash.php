@@ -5,41 +5,7 @@
             <h1 style="color:#303030;"><i class="fa fa-dashboard"></i> Dashboard  <button class="pull-right btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
   Create Event </button> </h1><br>
     
-                          <script type="text/javascript">
-
-                            function newEvent1(){
-
-                            $.ajax({
-                                type: 'POST',
-                                url: '/dash/ajax_add_event',
-                                data: { EventName: $("#EventName").val(), EventDate: $("#EventDate").val(),
-                                        EventLocation: $("#EventLocation").val(), EventDesc: $("#EventDesc").val(),
-                                        EventEndDate: $("#EventEndDate").val(), EventAddress: $('#EventAddress').val(), EventParking: $('#EventParking').val()
-                                 },
-                                beforeSend:function(){
-                                  // this is where we append a loading image
-                                  $('#eventStatus').html('<i class="glyphicon glyphicon-refresh"></i>&nbsp;Creating Event...');
-
-                                },
-                                success:function(data){
-                                  // successful request; do something with the data
-                                  $('#eventStatus').empty();
-                                  //print result here
-                                  $('#eventStatus').append('created successfully');
-                                  window.location = '/event/edit/' + data;
-                                
-                                },
-                                error:function(){
-                                  // failed request; give feedback to user
-                                  $('#eventStatus').append('An Error occured while creating this survey');
-                                  
-                                }
-                                });
-                              }
-                          
-
-                          </script>
-
+          
             <!-- Modal -->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
@@ -158,19 +124,7 @@
 
 <div class="row hidden-xs">
 <div class="col-lg-12">
-  <script src="/assets/js/jquery-2.1.0.min.js"></script>
-  <script type="text/javascript" src="http://cdn.knightlab.com/libs/timeline/latest/js/storyjs-embed.js"></script>
-        <script>
-            $(document).ready(function() {
-                createStoryJS({
-                    type:       'timeline',
-                    width:      '800',
-                    height:     '600',
-                    source:     '<?php echo base_url();?>/dash/ajax_timeline_json',
-                    embed_id:   'my-timeline'
-                });
-            });
-        </script>
+
         <div class="col-lg-8 col-lg-offset-2">
           <div id="my-timeline" style="border: 0;"></div>
           <br/>
@@ -178,27 +132,6 @@
 </div>
 </div>
 
- <div class="row">
-        <?php 
-  foreach ($event as $event_item) {
-  ?>
-  
-          <div class="col-lg-6">
-
-            <div class="event">
-
-            <h2><a href='/event/view/<?php echo $event_item->handle; ?>'> <?php echo $event_item->event_name; ?> </a></h2>
-            <h4> <strong>at</strong> <?echo $event_item->location;?> <strong>on</strong> <?php echo date("l, F jS, Y",strtotime($event_item->start_time)); ?></h4>
-            <p> <?php echo $event_item->event_description; ?> </p>
-          </div>
-        </div>
-<?php              
-                
-  }
-
-?>
-       
-</div>
-
+ 
 
 
