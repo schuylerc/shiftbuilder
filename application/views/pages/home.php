@@ -39,7 +39,7 @@
 
       <div class="nav-collapse navbar-responsive-collapse collapse" style="height: 0px;">
         <ul class="nav row">
-          <li data-slide="1" class="col-12 col-sm-2 active"><a id="menu-link-1" href="#slide-1" title="Next Section"><span class="icon icon-road"></span> <span class="text"><strong>SHIFT</strong>BUILDER</span></a></li>
+          <li data-slide="1" class="col-12 col-sm-2 active"><a id="menu-link-1" href="#slide-1" title="Next Section"><span class="text"><strong>SHIFT</strong>BUILDER</span></a></li>
           <li data-slide="2" class="col-12 col-sm-2"><a id="menu-link-2" href="#slide-2" title="Next Section"><span class="text">About</span></a></li>
           <li data-slide="3" class="col-12 col-sm-2"><a id="menu-link-3" href="#slide-3" title="Next Section"><span class="text">Join</span></a></li>
           <li data-slide="4" class="col-12 col-sm-2"><a id="menu-link-4" href="#slide-4" title="Next Section"><span class="text">Contact</span></a></li>
