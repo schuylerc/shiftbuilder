@@ -49,6 +49,13 @@ function bestCanidate($shift, $users){
 	/**
 	 * returns a user that is the best canidate for the shift
 	**/
+	$end_time = $shift->end_time;
+	if ($end_time == 0){
+		$end_time = 2400;
+	}
+	
+	$shift_length = ($end_time - $shift->start_time)
+	
 }
 
 function isAvail($shift, $user){
@@ -99,15 +106,15 @@ function createBinary($start_time, $end_time){
 	
 	//calculate how many 1's we need and create a string
 	if(end_time == 0){
-		$repeat = ((2400-$start_time)/100) * 4;
+		$repeat = floor((((2400-$start_time)/100) * 4)+.99);
 	}
 	else{
-		$repeat = (($end_time-$start_time)/100) * 4;
+		$repeat = floor(((($end_time-$start_time)/100) * 4)+.99);
 	}
 	$string1 = str_repeat("1",$repeat);
 	
 	//calculate how many 0's we need
-	$repeat = (2400 - $end_time) / 100;
+	$repeat = floor(((2400 - $end_time) / 100)+.99);
 	$string0 = str_repeat("0",$repeat);
 	
 	//combine the two strings
