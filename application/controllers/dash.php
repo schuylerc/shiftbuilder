@@ -17,6 +17,17 @@ class Dash extends MY_Controller {
 		$this->endView();
 	
 	}
+	public function test_database(){
+		//users
+		$this->load->model('users_model');
+		$users = $this->users_model->get_all_users();
+		echo "<pre>";
+		echo var_dump($users);
+		echo "</pre>";
+		//jobs
+		
+		//avail
+	}
 
 
 }
