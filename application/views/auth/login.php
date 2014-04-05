@@ -236,7 +236,7 @@ form.login a:hover
                     <a href="/home">Shift Builder</a></p>
                     <p><?php echo $message; ?></p>
                 <form class="login" action="/auth/login" method="post">
-                <input type="text" placeholder="Username" name="identity" />
+                <input type="text" placeholder="Username" name="identity" autocomplete="off" />
                 <input type="password" placeholder="Password" name="password" />
                 <input type="submit" value="Sign In" class="btn btn-success btn-sm" />
                 <div class="remember-forgot">
