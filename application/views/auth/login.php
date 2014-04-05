@@ -192,6 +192,7 @@ form.login a:hover
 }
 .posted-by
 {
+
     position: absolute;
     bottom: 26px;
     margin: 0 auto;
@@ -232,7 +233,7 @@ form.login a:hover
             </div>
             <div class="wrap">
                 <p class="form-title">
-                    Shift Builder</p>
+                    <a href="/home">Shift Builder</a></p>
                     <p><?php echo $message; ?></p>
                 <form class="login" action="/auth/login" method="post">
                 <input type="text" placeholder="Username" name="identity" />
@@ -257,14 +258,6 @@ form.login a:hover
             </div>
         </div>
     </div>
-    <div class="posted-by">
-	<a href="#">Home</a>
-	|	
-	<a href="#">About</a>
-	|	
-	<a href="#">Contact</a>
-
-</div>
 </div>
 
 
