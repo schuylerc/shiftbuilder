@@ -8,15 +8,22 @@ class users_model extends CI_Model
 		$this->load->database();
 	}
 	
-	//$this->users_model->get_all_users();	//return an array of all the users
-	//$this->users_model->get_user_jobs($userID);	//return an array of all the eligable jobs that a specific user can do
-	//$this->users_model->get_user_avail($userID);	//returns the availability of a user
-	//the formatting for that is an array of 7 integers(one for each day) that I can convert to binary
 	
 	public function get_all_users(){
 		$query = $this->db->get_where('users');
 		return $query->result_object();
 	}
 	
+	public function get_eligible_users($job_type_id){
+		//TODO - FINISH THIS
+		//initiate call
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->join('jobs', 'survey_surveys.owner_id = users.id');
+		$this->db->where('survey_surveys.org_id', $this->user->org_id);
+		$this->db->where('trash', '0');
+		$query = $this->db->get();
+		return $query->result_array();
+	}
 
 }
