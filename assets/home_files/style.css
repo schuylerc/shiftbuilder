@@ -205,7 +205,6 @@ body {
 
 #slide-1
 {
-    -webkit-filter: blur(20px);
   background-image: url('/assets/home_files/background_blur_v2.jpg' );
   color: #ffffff;
     -webkit-background-size: 100%;
@@ -313,7 +312,7 @@ body {
 }
 
 #slide-2 {
-  background-color: #070719;
+  background-color: #050507;
   color: #e4e6e5;
   padding-top: 90px;
 }
