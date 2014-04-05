@@ -192,6 +192,7 @@ form.login a:hover
 }
 .posted-by
 {
+
     position: absolute;
     bottom: 26px;
     margin: 0 auto;
@@ -232,10 +233,11 @@ form.login a:hover
             </div>
             <div class="wrap">
                 <p class="form-title">
-                    Shift Builder</p>
-                <form class="login">
-                <input type="text" placeholder="Username" />
-                <input type="password" placeholder="Password" />
+                    <a href="#">Shift Builder</a></p>
+                    <p><?php echo $message; ?></p>
+                <form class="login" action="/auth/login" method="post">
+                <input type="text" placeholder="Username" name="identity" />
+                <input type="password" placeholder="Password" name="password" />
                 <input type="submit" value="Sign In" class="btn btn-success btn-sm" />
                 <div class="remember-forgot">
                     <div class="row">
@@ -248,7 +250,7 @@ form.login a:hover
                             </div>
                         </div>
                         <div class="col-md-6 forgot-pass-content">
-                            <a href="javascription:void(0)" class="forgot-pass">Forgot Password</a>
+                            <a href="/auth/forgot_password" class="forgot-pass">Forgot Password</a>
                         </div>
                     </div>
                 </div>
@@ -256,14 +258,6 @@ form.login a:hover
             </div>
         </div>
     </div>
-    <div class="posted-by">
-	<a href="#">Home</a>
-	|	
-	<a href="#">About</a>
-	|	
-	<a href="#">Contact</a>
-
-</div>
 </div>
 
 
