@@ -233,9 +233,10 @@ form.login a:hover
             <div class="wrap">
                 <p class="form-title">
                     Shift Builder</p>
-                <form class="login">
-                <input type="text" placeholder="Username" />
-                <input type="password" placeholder="Password" />
+                    <p><?php echo $message; ?></p>
+                <form class="login" action="/auth/login" method="post">
+                <input type="text" placeholder="Username" name="identity" />
+                <input type="password" placeholder="Password" name="password" />
                 <input type="submit" value="Sign In" class="btn btn-success btn-sm" />
                 <div class="remember-forgot">
                     <div class="row">
