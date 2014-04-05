@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_Add_Job_Types_Table extends CI_Migration {
+class Migration_Reset_Job_Types_Table extends CI_Migration {
 
 	public function up()
 	{

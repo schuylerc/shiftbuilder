@@ -10,7 +10,7 @@ class Migrate extends CI_Controller {
 			show_error($this->migration->error_string());
 		}
 		else{
-			echo "The databse is up to date!";
+			echo "The database is up to date!";
 		}
 	}
 }

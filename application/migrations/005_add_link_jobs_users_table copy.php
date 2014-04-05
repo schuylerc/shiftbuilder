@@ -4,10 +4,10 @@ class Migration_Add_link_jobs_users_table extends CI_Migration {
 
 	public function up()
 	{
-		// Drop table 'job_types' if it exists		
-		$this->dbforge->drop_table('job_types');
+		// Drop table 'jobs_users' if it exists		
+		$this->dbforge->drop_table('jobs_users');
 
-		// Table structure for table 'job_types'
+		// Table structure for table 'jobs_users'
 		$this->dbforge->add_field(array(
 			'id' => array(
 				'type' => 'MEDIUMINT',
@@ -25,12 +25,12 @@ class Migration_Add_link_jobs_users_table extends CI_Migration {
 			)	
 		));
 		$this->dbforge->add_key('id', TRUE);
-		$this->dbforge->create_table('job_types');
+		$this->dbforge->create_table('jobs_users');
 
 	}
 
 	public function down()
 	{
-		$this->dbforge->drop_table('job_types');
+		$this->dbforge->drop_table('jobs_users');
 	}
 }
