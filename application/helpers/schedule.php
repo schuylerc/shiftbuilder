@@ -1,10 +1,7 @@
 <?php	
 
 	/**
-	* $this->users_model->get_user_avail($user->id);	returns the availability of a specified user
-														the formatting for that is an array of 7 integers(one for each day) that I can convert to binary like we discussed
 	* $this->users_model->get_eligible_users($shift->job_type);	returns an array of all users eligible for the specified job_type.
-	* 
 	* 
 	* $this->shifts_model->get_all_shifts();	return an array of all shifts that need to be filled(shift table)
 	* $this->shifts_model->update_taken_by($shift->id, $user->id);	update a particular shift in the database as taken by a particular user
@@ -24,6 +21,7 @@ function genSchedule(){
 	foreach($shifts as $shift){
 		$usersAvail = $this->whoisAvail($shift); 
 		$bestCanidate = $this->bestCanidate($shift, $usersAvail);
+		$this->shifts_model->update_taken_by($shift->id, $bestCanidate->id);
 	}
 }
 
@@ -49,7 +47,7 @@ function bestCanidate($shift, $users){
 	**/
 }
 
-function isAvail($user){
+function isAvail($shift, $user){
 	/**
 	 * returns true if the user is available for the shift, false otherwise
 	 * 
@@ -59,7 +57,79 @@ function isAvail($user){
 	 * 
 	**/
 	
+	$shiftAvail = createBinary($shift->start_time, $shift->end_time);
+	if (noConflict($user, $shiftAvail)){
+		switch ($shift->day) {
+			case 'sun':
+				$userAvail = $user->sun_availability;
+				break;
+			case 'mon':
+				$userAvail = $user->mon_availability;
+				break;
+			case 'tue':
+				$userAvail = $user->tue_availability;
+				break;
+			case 'wed':
+				$userAvail = $user->wed_availability;
+				break;
+			case 'thu':
+				$userAvail = $user->thu_availability;
+				break;
+			case 'fri':
+				$userAvail = $user->fri_availability;
+				break;
+			case 'sat':
+				$userAvail = $user->sat_availability;
+				break;
+			}
+		if($userAvail & $shiftAvail == $shiftAvail){
+			return true;
+		}
+	}
+	return false;
+}
+
+function createBinary($start_time, $end_time){
+	//convert the start and end times to an integer that represents a long binary number, return that number
+	//construct the middle part with all the 1's
 	
+	//calculate how many 1's we need and create a string
+	if(end_time == 0){
+		$repeat = ((2400-$start_time)/100) * 4;
+	}
+	else{
+		$repeat = (($end_time-$start_time)/100) * 4;
+	}
+	$string1 = str_repeat("1",$repeat);
+	
+	//calculate how many 0's we need
+	$repeat = (2400 - $end_time) / 100;
+	$string0 = str_repeat("0",$repeat);
+	
+	//combine the two strings
+	$binary_value = $string1 . $string0;
+	
+	return bindec($binary_value);
+}
+
+function noConflict($user, $shift){
+	//returns true if there is no conflict with other shifts the user has, also, no double shifts
+	$shift_start_time = $shift->start_time;
+	$shift_end_time = $shift->end_time;
+	$shift_binary = createBinary($shift_start_time, $shift_end_time);
+	$user_shifts_taken = $this->shifts_model->get_taken_shifts($user->id);
+	foreach ($user_shifts_taken as $taken_shift){
+		$taken_start_time = $taken_shift->start_time;
+		$taken_end_time = $taken_shift->end_time;
+		$taken_binary = createBinary($shift_start_time, $shift_end_time);
+		if($taken_binary & $shift_binary != 0){
+			return false;
+		}
+		if ($shift->day == $taken_shift->day) {
+			return false;
+		}
+	}
+	return true;
 }
 
 ?>
