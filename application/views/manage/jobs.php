@@ -20,3 +20,5 @@
     <?php endforeach;?>
   </table>
 </div>
+
+<div class="pull-right"><a href="#" class="btn btn-success">Add New Job Type</a></div>

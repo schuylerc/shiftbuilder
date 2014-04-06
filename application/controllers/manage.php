@@ -28,6 +28,12 @@ class Manage extends MY_Controller {
 		$this->load->view('manage/jobs', $data);
 		$this->endView();
 	}
+	public function new_job(){
+		
+	}
+	public function edit_job(){
+		
+	}
 	public function shifts(){
 		$this->beginView();
 		$this->load->view('manage/shifts');
