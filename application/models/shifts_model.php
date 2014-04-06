@@ -81,7 +81,7 @@ class shifts_model extends CI_Model
 		$this->db->update('shifts', array('replace_request' => 1), array('id' => $shift_id));
 		return true;
 	}
-	public function mark_shift_coverage_request($shift_id){
+	public function unmark_shift_coverage_request($shift_id){
 		$this->db->update('shifts', array('replace_request' => 0), array('id' => $shift_id));
 		return true;
 	}
