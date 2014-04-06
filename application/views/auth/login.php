@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <!-- Page Specific CSS -->
      <link href="/assets/css/cover.css" rel="stylesheet">
+     
+     <script src="/assets/js/jquery-2.1.0.min.js"></script>
+     
+     
 <style>
 body
 {
@@ -26,6 +30,8 @@ body
     padding: 0;
     margin: 0;
 }
+
+.bg {opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
 
 .wrap
 {
