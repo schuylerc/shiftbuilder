@@ -32,13 +32,13 @@
             </li>
             
             <?php if($user->admin) { ?>
-            <li class="dropdown">
+            <li class="dropdown<?php if($this->uri->segment(1)=="manage"){ echo ' active'; } ?>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Employees</a></li>
-            <li><a href="#">Jobs</a></li>
-            <li><a href="#">Shifts</a></li>
-            <li><a href="#">Schedules</a></li>
+            <li><a href="/manage/employees">Employees</a></li>
+            <li><a href="/manage/jobs">Jobs</a></li>
+            <li><a href="/manage/shifts">Shifts</a></li>
+            <li><a href="/manage/schedules">Schedules</a></li>
             
           </ul>
         </li>

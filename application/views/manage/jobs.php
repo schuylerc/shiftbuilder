@@ -1,0 +1,1 @@
+<h1>Manage Job Types</h1>
