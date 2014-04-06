@@ -9,8 +9,7 @@
 	* 
 	* $this->shifts_model->get_completed_shifts(); return an array of shifts that are filled and ready to go(I need this to print the schedule)
 	* 
-	* -------NEW------
-	* $this->users_model->subtract_from_hours_scheduled($shift_length, $user->id);	//subtract the given int from the given user's hours_scheduled
+	* $this->users_model->add_scheduled_hours($shift_length, $user->id);	//add the given int from the given user's hours_scheduled
 	* 
 	*/
 		
@@ -68,7 +67,7 @@ function bestCanidate($shift, $users){
 		$users_points[] = $user_hours_left/(.5*$userpref);
 	}
 	$index = array_search(max($array), $array);
-	$this->users_model->subtract_from_hours_scheduled($shift_length, $users[index]->id);	
+	$this->users_model->add_hours_scheduled($shift_length, $users[index]->id);	
 	return $users[index];
 }
 
