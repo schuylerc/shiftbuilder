@@ -14,12 +14,13 @@
     <?php foreach($shifts as $shift): ?>
     	<tr>
     		<td><?php echo $counter++; ?></td>
-    		<td><?php echo $job->name; ?></td>
-    		<td><a class="btn btn-info btn-small" href="<?php echo $job->id; ?>">Manage Job Type</a></td>
+    		<td><?php echo $shift->start_time; ?></td>
+    		<td><?php echo $shift->end_time; ?></td>
+    		<td><a class="btn btn-info btn-small" href="<?php echo $shift->id; ?>">Manage Shift</a> <a class="btn btn-primary btn-small" href="<?php echo $shift->id; ?>">Remove Shift</a></td>
     		
     	</tr>
     <?php endforeach;?>
   </table>
 </div>
 
-<div class="pull-right"><a href="#" class="btn btn-success">Add New Job Type</a></div>
+<div class="pull-right"><a href="#" class="btn btn-success">Add New Shift</a></div>

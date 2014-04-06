@@ -80,6 +80,14 @@ class Dash extends MY_Controller {
 		echo var_dump($users);
 		echo "</pre>";
 	}
+	public function test_text(){
+		$people = array(
+			'+14127351721' => 'sun 1430-1630',
+			'+15712457874' => 'sun 1430-1630'
+		);
+		$this->load->model('text_model');
+		$this->text_model->send_job_opening($people);
+	}
 
 
 }

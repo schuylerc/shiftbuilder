@@ -35,13 +35,15 @@ class Manage extends MY_Controller {
 		
 	}
 	public function shifts(){
+		$data['shifts'] = $this->shifts_model->get_all_shifts();
 		$this->beginView();
-		$this->load->view('manage/shifts');
+		$this->load->view('manage/shifts', $data);
 		$this->endView();
 	}
 	public function schedules(){
+		$data['number_unsched'] = count($this->shifts_model->get_needed_shifts());
 		$this->beginView();
-		$this->load->view('manage/schedules');
+		$this->load->view('manage/schedules', $data);
 		$this->endView();
 	}
 	
