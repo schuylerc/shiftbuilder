@@ -83,5 +83,10 @@ class users_model extends CI_Model
 		
 		$this->db->insert('requests', $data);
 	}
+	
+	public function get_user_data($id){
+		$query = $this->db->get_where('users', array('id' => $id));
+		return $query->result_object();
+	}
 
 }

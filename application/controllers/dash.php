@@ -45,6 +45,7 @@ class Dash extends MY_Controller {
 		echo "<p>We've let everyone else know that your shift is free. We'll text you if they grab it. Hang in there!</p>";
 		echo "<a href='/dash' class='btn btn-primary'>Okay</a></div>";
 		$this->endView();
+		$this->shifts_model->mark_shift_coverage_request($shift_id);
 	}
 	public function prefs(){
 		$user = $this->ion_auth->user()->row();
