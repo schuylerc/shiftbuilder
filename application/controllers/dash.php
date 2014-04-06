@@ -17,6 +17,13 @@ class Dash extends MY_Controller {
 		$this->endView();
 	
 	}
+	public function prefs(){
+		$this->checkLogin();
+		$this->beginView();
+		$this->load->view('dash/prefs');
+		$this->endView();
+	}
+	
 	public function test_database(){
 		//users
 		$this->load->model('users_model');
