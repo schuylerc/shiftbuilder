@@ -57,20 +57,20 @@ class users_model extends CI_Model
 	
 	public function update_user_avail($user_id, $sun_start, $mon_start, $tue_start, $wed_start, $thu_start, $fri_start, $sat_start, $sun_stop, $mon_stop, $tue_stop, $wed_stop, $thu_stop, $fri_stop, $sat_stop){
 		$update = array(
-				'sun_availability_start' => $sun,
-				'mon_availability_start' => $mon,
-				'tue_availability_start' => $tue,
-				'wed_availability_start' => $wed,
-				'thu_availability_start' => $thu,
-				'fri_availability_start' => $fri,
-				'sat_availability_start' => $sat,
-				'sun_availability_stop' => $sun,
-				'mon_availability_stop' => $mon,
-				'tue_availability_stop' => $tue,
-				'wed_availability_stop' => $wed,
-				'thu_availability_stop' => $thu,
-				'fri_availability_stop' => $fri,
-				'sat_availability_stop' => $sat
+				'sun_availability_start' => $sun_start,
+				'mon_availability_start' => $mon_start,
+				'tue_availability_start' => $tue_start,
+				'wed_availability_start' => $wed_start,
+				'thu_availability_start' => $thu_start,
+				'fri_availability_start' => $fri_start,
+				'sat_availability_start' => $sat_start,
+				'sun_availability_stop' => $sun_stop,
+				'mon_availability_stop' => $mon_stop,
+				'tue_availability_stop' => $tue_stop,
+				'wed_availability_stop' => $wed_stop,
+				'thu_availability_stop' => $thu_stop,
+				'fri_availability_stop' => $fri_stop,
+				'sat_availability_stop' => $sat_stop
 		);
 		$this->db->where('id', $user_id);
 		$this->db->update('users', $update);

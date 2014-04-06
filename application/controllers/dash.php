@@ -50,9 +50,9 @@ class Dash extends MY_Controller {
 		$data['user'] = $user;
 		//if changes need to be saved
 		if(sizeof($_POST)!=0){
-			//$mon_avail = calc th
-			$data['msg'] = "Your availability has been updated";
-			$this->users_model->update_user_avail($user->id, $sun_availability_start, $mon_availability_start, $tue_availability_start, $wed_availability_start, $thu_availability_start, $fri_availability_start, $sat_availability_start, $sun_availability_stop, $mon_availability_stop, $tue_availability_stop, $wed_availability_stop, $thu_availability_stop, $fri_availability_stop, $sat_availability_stop);
+			$this->users_model->update_user_avail($user->id, $_POST['sun_start'], $_POST['mon_start'], $_POST['tue_start'], $_POST['wed_start'], $_POST['thu_start'], $_POST['fri_start'], $_POST['sat_start'], $_POST['sun_stop'], $_POST['mon_stop'], $_POST['tue_stop'], $_POST['wed_stop'], $_POST['thu_stop'], $_POST['fri_stop'], $_POST['sat_stop']);
+			$data['msg'] = '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>Changes</strong> have been saved</div>';
+			
 		}
 		else{
 			$data['msg'] = "";
