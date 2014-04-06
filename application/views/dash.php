@@ -7,7 +7,7 @@ echo isAvail($shift, $user);
 echo isAvail($shift, &user);
 */
 $this->schedule_model->genSchedule();
-echo $complete_shifts;
+echo var_dump($complete_shifts);
 ?>
 
 

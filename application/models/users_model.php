@@ -27,8 +27,10 @@ class users_model extends CI_Model
 	
 	public function add_scheduled_hours($num_hours, $user_id){
 		$query = $this->db->get_where('users', array('id' => $user_id));
-		$user = $query->row();
-		$update = array('hours_scheduled' => $user->hours_scheduled + $num_hours);
+		$user = $query->result_object();
+		$user = $user[0];
+		$new_hours = $user->hours_scheduled + $num_hours;
+		$update = array('hours_scheduled' => $new_hours);
 		$this->db->where('id', $user_id);
 		$this->db->update('users', $update);
 	}
