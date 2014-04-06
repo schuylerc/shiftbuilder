@@ -36,6 +36,11 @@ class Dash extends MY_Controller {
 		$this->load->view('dash/prefs', $data);
 		$this->endView();
 	}
+	public function avail(){
+		$this->beginView();
+		$this->load->view('dash/avail');
+		$this->endView();
+	}
 	
 	public function test_database(){
 		//users

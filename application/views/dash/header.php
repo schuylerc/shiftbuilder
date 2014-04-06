@@ -5,6 +5,10 @@
     <meta charset="utf-8">
     <title>ShiftBuilder</title>
     <link rel="stylesheet" href="/assets/admin_css/bootstrap.css" media="screen">
+
+  	<link type="text/css" href="/assets/timepicker/bootstrap-timepicker/css/bootstrap-timepicker.min.css" />
+  	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
   </head>
   <body>
     <div class="navbar navbar-default navbar-fixed-top">
@@ -23,8 +27,8 @@
             <li class="<?php if($this->uri->segment(1)=="dash" && ($this->uri->segment(2)=="" || $this->uri->segment(1)=="index")){ echo ' active'; } ?>">
               <a href="/dash">My Schedule</a>
             </li>
-            <li>
-              <a href="/dash">My Availability</a>
+            <li<?php if($this->uri->segment(2)=="avail"){ echo " class='active'";} ?>>
+              <a href="/dash/avail">My Availability</a>
             </li>
             
             
