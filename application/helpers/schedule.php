@@ -7,7 +7,6 @@
 	* $this->shifts_model->update_taken_by($shift->id, $user->id);	update a particular shift in the database as taken by a particular user
 	* $this->shifts_model->get_taken_shifts($user->id) return an array of all the shifts that the specified user already has taken
 	* 
-	* NEW FUNCTIONS I ADDED SINCE I LAST PUSHED
 	* $this->shifts_model->get_completed_shifts(); return an array of shifts that are filled and ready to go(I need this to print the schedule)
 	* 
 	*/
@@ -53,8 +52,14 @@ function bestCanidate($shift, $users){
 	if ($end_time == 0){
 		$end_time = 2400;
 	}
+	$shift_length = floor(((($end_time - $shift->start_time)/100) * 4) + .99)/4;	//how long the shift is in hours
+	$shift = get_shift_type($shift); 	//what type the shift is, ie morning/afternoon
 	
-	$shift_length = ($end_time - $shift->start_time)
+	$sorted_users = scheduled_hours_sort($users);	//get the sorted list
+	
+	//begin loop through the sorted list
+		//select the best user through this process using some formula I create. 
+	
 	
 }
 
@@ -146,6 +151,41 @@ function printSchedule(){
 	//this will take the list of shifts and print them all out.
 	
 	$shifts = $this->shifts_model->get_completed_shifts();
+}
+
+function scheduled_hours_sort($users){
+	//returns a sorted list of users based on their scheduled hours, the most hours goes first
+		//echo $users;
+	usort($users, 'sortByHoursRemaining');
+		//echo $users;
+	return $users;
+}
+
+function sortByHoursRemaining($a, $b) {
+	$a_hours_remain = ($a->max_hours - $a->hours_scheduled);
+	$b_hours_remain = ($b->max_hours - $b->hours_scheduled);
+	if ($a_hours_remain == $b_hours_remain){return 0;}
+	if($a_hours_remain > $b_hours_remain){return 1;}
+	if($a_hours_remain < $b_hours_remain){return -1;}
+}
+
+function get_shift_type($shift){
+	//return the type of shift the shift is
+	$start_time = $shift->start_time;
+	$end_time = $shift->end_time;
+	if ($start_time > 1800) {
+		return "night";
+	}
+	if ($start_time > 1200) {
+		return "evening";
+	}
+	if ($start_time >= 600) {
+		return "morning";
+	}
+	if ($start_time >= 0) {
+		return "graveyard";
+	}
+
 }
 
 }
