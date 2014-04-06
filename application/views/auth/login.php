@@ -24,14 +24,14 @@
 <style>
 body
 {
-    background: url('/assets/Bridge.png') fixed;
+
 
     background-size: cover;
     padding: 0;
     margin: 0;
 }
 
-.bg {opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
+
 
 .wrap
 {
@@ -208,6 +208,16 @@ form.login a:hover
     left: 45%;
 }
 
+.bgImage {
+  position: fixed;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  z-index: 1;
+  display: none;
+  background-size: contain;
+  background-size: cover;
+}
+
 </style>
 <script>
 
@@ -219,13 +229,28 @@ form.login a:hover
     $('.pass-reset-submit').click(function(event) {
       $(".pr-wrap").removeClass("show-pass-reset");
     }); 
+
+    $(function() {
+    	  var src = '/assets/Bridge.png';
+    	  var ele = $('.bgImage');
+    	  var img = $('<img>', {
+    	    src: src
+    	  }).hide().appendTo(ele).load(function() {
+    	    $(this).remove();
+    	    ele.css('background-image', 'url('+src+')').fadeIn(5000);
+    	  });
+    	});
+	
 });
 
 </script>
   </head>
 
   <body>
-
+  
+<div class="bgImage"></div>
+  
+  
 <div class="container">
     <div class="row">
         <div class="col-md-12">
