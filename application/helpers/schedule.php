@@ -9,6 +9,9 @@
 	* 
 	* $this->shifts_model->get_completed_shifts(); return an array of shifts that are filled and ready to go(I need this to print the schedule)
 	* 
+	* -------NEW------
+	* $this->users_model->subtract_from_hours_scheduled($shift_length, $user->id);	//subtract the given int from the given user's hours_scheduled
+	* 
 	*/
 		
 function genSchedule(){
@@ -55,12 +58,18 @@ function bestCanidate($shift, $users){
 	$shift_length = floor(((($end_time - $shift->start_time)/100) * 4) + .99)/4;	//how long the shift is in hours
 	$shift = get_shift_type($shift); 	//what type the shift is, ie morning/afternoon
 	
-	$sorted_users = scheduled_hours_sort($users);	//get the sorted list
-	
-	//begin loop through the sorted list
-		//select the best user through this process using some formula I create. 
-	
-	
+	//$sorted_users = scheduled_hours_sort($users);	//get the sorted list
+	$users_points = array();
+	foreach($users as $user) {
+		//figure out the users preference for the shift
+		//figure out how many hours this person has to be scheduled before meeting max
+		$userpref = get_user_preference($user, $shift_type);
+		$user_hours_left = ($user->max_hours - $user->hours_scheduled);
+		$users_points[] = $user_hours_left/(.5*$userpref);
+	}
+	$index = array_search(max($array), $array);
+	$this->users_model->subtract_from_hours_scheduled($shift_length, $users[index]->id);	
+	return $users[index];
 }
 
 function isAvail($shift, $user){
@@ -153,6 +162,7 @@ function printSchedule(){
 	$shifts = $this->shifts_model->get_completed_shifts();
 }
 
+/*
 function scheduled_hours_sort($users){
 	//returns a sorted list of users based on their scheduled hours, the most hours goes first
 		//echo $users;
@@ -168,6 +178,7 @@ function sortByHoursRemaining($a, $b) {
 	if($a_hours_remain > $b_hours_remain){return 1;}
 	if($a_hours_remain < $b_hours_remain){return -1;}
 }
+*/
 
 function get_shift_type($shift){
 	//return the type of shift the shift is
@@ -186,6 +197,40 @@ function get_shift_type($shift){
 		return "graveyard";
 	}
 
+}
+
+function get_user_preference($user, $shift_type){
+	//returns the integer that is the number representing the user preference
+	//1 means highly preferred, 4 means hated
+	switch ($shift_type) {
+		case 'graveyard':
+			$pref = 1;
+			break;
+		case 'morning':
+			$pref = 2;
+			break;
+		case 'evening':
+			$pref = 3;
+ 			break;
+		case 'night':
+			$pref = 4;
+			break;
+	}
+	
+	if(($user->pref_time_1) == $pref) {
+		return 1;
+	}
+	if(($user->pref_time_2) == $pref) {
+		return 2;
+	}
+	if(($user->pref_time_3) == $pref) {
+		return 3;
+	}
+	if(($user->pref_time_4) == $pref) {
+		return 4;
+	}
+	
+	
 }
 
 }
