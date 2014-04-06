@@ -31,7 +31,7 @@
               <a href="/dash/avail">My Availability</a>
             </li>
             
-            
+            <?php if($user->admin) { ?>
             <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage <b class="caret"></b></a>
           <ul class="dropdown-menu">
@@ -42,7 +42,7 @@
             
           </ul>
         </li>
-            
+            <?php } ?>
             
   
           </ul>
