@@ -42,7 +42,7 @@ form.login input[type="text"], form.login input[type="password"]
     font-weight: 400;
     letter-spacing: 1px;
     margin-bottom: 5px;
-    color: #FFFFFF;
+    color: #000000;
     outline: 0;
 }
 
@@ -68,8 +68,8 @@ form.login input[type="submit"]:hover
 <body style="">
   <!--<div class="navbar navbar-fixed-top" data-activeslide="1">-->
   <div class="navbar navbar-fixed-top">
-    <div class="container">
 
+    <div class="container">
       <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
         <span class="icon-bar"></span>
@@ -108,7 +108,7 @@ form.login input[type="submit"]:hover
         <div class="col-12">
           <h1 class="font-thin">Scheduling <span class="font-semibold">simplified</span></h1>
           <h4 class="font-thin"><strong>SHIFT</strong>BUILDER dynamically creates <strong>schedules</strong> that take everyone into account</h4>
-          <a data-slide="2" class="btn btn-primary btn-md navigation-slide" style="margin-top: 10px;" href="#slide-3">Sign up now.</a>
+          <a data-slide="2" class="btn btn-primary btn-md navigation-slide" style="margin-top: 10px;" href="#slide-3">Sign up now</a>
         </div><!-- /col-12 -->
       </div><!-- /row -->
       <div id="home-row-2" class="row clearfix">
@@ -175,6 +175,7 @@ form.login input[type="submit"]:hover
 
   <!-- fancybox init -->
   <script>
+
   $(document).ready(function(e) {
     var lis = $('.nav > li');
     menu_focus( lis[0], 1 );
@@ -189,6 +190,4 @@ form.login input[type="submit"]:hover
     });
   });
   </script>
-
-
 </body></html>
