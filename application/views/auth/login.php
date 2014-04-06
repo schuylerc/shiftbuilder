@@ -254,13 +254,16 @@ form.login a:hover
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="pr-wrap">
+            <div class="pr-wrap"><form action="/auth/forgot_password" method="post">
                 <div class="pass-reset">
+                
+                
                     <label>
-                        Enter the email you signed up with</label>
-                    <input type="email" placeholder="Email" name="identity" />
+                        <font color=black>Enter the email you signed up with</font></label>
+                    <input type="email" placeholder="Email" name="email" />
                     <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" name="password" />
-                </div>
+                
+                </div></form>
             </div>
             <div class="wrap">
                 <p class="form-title">
@@ -281,7 +284,7 @@ form.login a:hover
                             </div>
                         </div>
                         <div class="col-md-6 forgot-pass-content">
-                            <a href="/auth/forgot_password" class="forgot-pass">Forgot Password</a>
+                            <a href="#" class="forgot-pass">Forgot Password</a>
                         </div>
                     </div>
                 </div>

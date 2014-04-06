@@ -13,6 +13,6 @@
   <?php echo form_hidden($csrf); ?>
   <?php echo form_hidden(array('id'=>$user->id)); ?>
 
-  <p><?php echo form_submit('submit', lang('deactivate_submit_btn'));?></p>
+  <p><button class="btn btn-primary">Submit</button></p>
 
 <?php echo form_close();?>
