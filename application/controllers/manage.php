@@ -22,8 +22,10 @@ class Manage extends MY_Controller {
 		$this->endView();
 	}
 	public function jobs(){
+		$this->load->model('jobs_model');
+		$data['jobs'] = $this->jobs_model->get_all_jobs();
 		$this->beginView();
-		$this->load->view('manage/jobs');
+		$this->load->view('manage/jobs', $data);
 		$this->endView();
 	}
 	public function shifts(){
