@@ -42,7 +42,7 @@ form.login input[type="text"], form.login input[type="password"]
     font-weight: 400;
     letter-spacing: 1px;
     margin-bottom: 5px;
-    color: #000000;
+    color: #FFFFFF;
     outline: 0;
 }
 
@@ -83,7 +83,7 @@ form.login input[type="submit"]:hover
           <li data-slide="2" class="col-12 col-sm-2"><a id="menu-link-2" href="#slide-2" title="Next Section"><span class="text">About</span></a></li>
           <li data-slide="3" class="col-12 col-sm-2"><a id="menu-link-3" href="#slide-3" title="Next Section"><span class="text">Join</span></a></li>
           <li data-slide="4" class="col-12 col-sm-2"><a id="menu-link-4" href="#slide-4" title="Next Section"><span class="text">Contact</span></a></li>
-     <li class="col-12 col-sm-2"><a id="menu-link-8" href="/auth/login/dash" title="Next Section">log In</a></li>
+     <li class="col-12 col-sm-2"><a id="menu-link-8" href="/auth/login/dash" title="Next Section">Sign In</a></li>
 
         </ul>
         <div class="row">
