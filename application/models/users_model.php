@@ -75,5 +75,13 @@ class users_model extends CI_Model
 		$this->db->where('id', $user_id);
 		$this->db->update('users', $update);
 	}
+	
+	public function request_access($email){
+		$data = array(
+				'email' => $email
+		);
+		
+		$this->db->insert('requests', $data);
+	}
 
 }

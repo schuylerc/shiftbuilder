@@ -8,7 +8,7 @@ class text_model extends CI_Model
 		$this->load->database();
 	}
 	
-	public function send_job_opening($people){
+	public function send_job_opening($people, $shift_string){
 		/* Send an SMS using Twilio. You can run this file 3 different ways:
 		 *
 		* - Save it as sendnotifications.php and at the command line, run
@@ -44,7 +44,7 @@ class text_model extends CI_Model
 		
 		// Step 5: Loop over all our friends. $number is a phone number above, and
 		// $name is the name next to it
-		foreach ($people as $number => $shift) {
+		foreach ($people as $number) {
 		
 			$sms = $client->account->messages->sendMessage(
 		
@@ -56,11 +56,11 @@ class text_model extends CI_Model
 					$number,
 		
 					// the sms body
-					"New Shift Available ($shift) Reply ACCEPT to take this shift. ~ShiftBuilder"
+					"New Shift Available ($shift_string) Reply ACCEPT to take this shift. ~ShiftBuilder"
 			);
 		
 			// Display a confirmation message on the screen
-			echo "Sent message for $shift";
+			echo "Sent message for $person <br>";
 		}
 	}	
 	

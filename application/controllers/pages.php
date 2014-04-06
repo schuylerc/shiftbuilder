@@ -13,6 +13,12 @@ class Pages extends MY_Controller {
 	public function home(){
 		$this->load->view('pages/home');
 	}
+	public function request_access(){
+		$this->load->model('users_model');
+		$this->users_model->request_access($_POST['email']);
+		$data['message'] = "Request has been sent";
+		$this->load->view('auth/login', $data);
+	}
 
 
 }
