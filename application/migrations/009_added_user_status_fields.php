@@ -10,7 +10,7 @@ class Migration_added_user_status_fields extends CI_Migration {
 					'constraint' => '20',
 			)
 		);
-		$this->dbforge->modify_column('users', $fields);
+		$this->dbforge->add_column('users', $fields);
 
 	}
 
