@@ -47,6 +47,7 @@ class Dash extends MY_Controller {
 	public function avail(){
 		//get user data
 		$user = $this->ion_auth->user()->row();
+		$data['user'] = $user;
 		//if changes need to be saved
 		if(sizeof($_POST)!=0){
 			//$mon_avail = calc th
