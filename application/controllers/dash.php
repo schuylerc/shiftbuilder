@@ -10,11 +10,20 @@ class Dash extends MY_Controller {
 	}
 	
 	public function index(){
+		//user info
+		$user = $this->ion_auth->user()->row();
+		//get all shifts
+		$data['complete_shifts'] = $this->shifts_model->get_completed_shifts();
+		$data['needed_shifts'] = $this->shifts_model->get_needed_shifts();
+		//other vars
+			//$data['stuff'] = "cool";
+			//$data['stuff2'] = "cool";
 		
+		//begins the nav
 		$this->beginView();
-
-		$this->load->view('dash');
-
+		//loads the other page and injects the data
+		$this->load->view('dash', $data);
+		//footer
 		$this->endView();
 	
 	}
@@ -31,14 +40,25 @@ class Dash extends MY_Controller {
 			$data['msg'] = "";
 		}
 		
-		
 		$this->beginView();
 		$this->load->view('dash/prefs', $data);
 		$this->endView();
 	}
 	public function avail(){
+		//get user data
+		$user = $this->ion_auth->user()->row();
+		//if changes need to be saved
+		if(sizeof($_POST)!=0){
+			//$mon_avail = calc th
+			$data['msg'] = "Your availability has been updated";
+			$this->users_model->update_user_avail($user->id, $sun_availability_start, $mon_availability_start, $tue_availability_start, $wed_availability_start, $thu_availability_start, $fri_availability_start, $sat_availability_start, $sun_availability_stop, $mon_availability_stop, $tue_availability_stop, $wed_availability_stop, $thu_availability_stop, $fri_availability_stop, $sat_availability_stop);
+		}
+		else{
+			$data['msg'] = "";
+		}
+	//always load page		
 		$this->beginView();
-		$this->load->view('dash/avail');
+		$this->load->view('dash/avail', $data);
 		$this->endView();
 	}
 	

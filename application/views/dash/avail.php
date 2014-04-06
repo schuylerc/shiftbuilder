@@ -4,6 +4,7 @@
 Set your availibility to recieve the most optimal schedule
 </p>
 <form method="post">
+<?php echo $msg; ?>
 <div class="table-responsive">
   <table class="table">
     <tr>

@@ -1,4 +1,11 @@
-<?php	
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+class schedule_model extends CI_Model
+{
+
+	public function __construct()
+	{
+		//$this->load->database();
+	}
 
 	/**
 	* $this->users_model->get_eligible_users($shift->job_type);	returns an array of all users eligible for the specified job_type.
@@ -13,15 +20,13 @@
 	* 
 	*/
 		
-function genSchedule(){
+public function genSchedule($shifts){
 	/**
 	 * itterate through each shift
 	 * 	find out who is available for given shift that can work the job type
 	 * 	pick the person that prefers the given shift that is furthest from there hours per week preference
 	 * 	after the person is selected for the shift, mark the shift as taken in the database by the given person
 	 */
-	
-	$shifts = $this->shifts_model->get_needed_shifts();
 
 	foreach($shifts as $shift){
 		$usersAvail = $this->whoisAvail($shift); 
@@ -30,7 +35,7 @@ function genSchedule(){
 	}
 }
 
-function whoisAvail($shift){
+public function whoisAvail($shift){
 	/**
 	 * returns a list of the people available to work a given shift
 	 * takes into account there ability to work a certain job
@@ -46,7 +51,7 @@ function whoisAvail($shift){
 	return usersAvail;
 }
 
-function bestCanidate($shift, $users){
+public function bestCanidate($shift, $users){
 	/**
 	 * returns a user that is the best canidate for the shift
 	**/
@@ -71,7 +76,7 @@ function bestCanidate($shift, $users){
 	return $users[index];
 }
 
-function isAvail($shift, $user){
+public function isAvail($shift, $user){
 	/**
 	 * returns true if the user is available for the shift, false otherwise
 	 * 
@@ -85,25 +90,25 @@ function isAvail($shift, $user){
 	if (noConflict($user, $shiftAvail)){
 		switch ($shift->day) {
 			case 'sun':
-				$userAvail = $user->sun_availability;
+				$userAvail = createBinary($user->sun_availability_start, $user->sun_availability_stop);
 				break;
 			case 'mon':
-				$userAvail = $user->mon_availability;
+				$userAvail = createBinary($user->mon_availability_start, $user->mon_availability_stop);
 				break;
 			case 'tue':
-				$userAvail = $user->tue_availability;
+				$userAvail = createBinary($user->tue_availability_start, $user->tue_availability_stop);
 				break;
 			case 'wed':
-				$userAvail = $user->wed_availability;
+				$userAvail = createBinary($user->wed_availability_start, $user->wed_availability_stop);
 				break;
 			case 'thu':
-				$userAvail = $user->thu_availability;
+				$userAvail = createBinary($user->thu_availability_start, $user->thu_availability_stop);
 				break;
 			case 'fri':
-				$userAvail = $user->fri_availability;
+				$userAvail = createBinary($user->fri_availability_start, $user->fri_availability_stop);
 				break;
 			case 'sat':
-				$userAvail = $user->sat_availability;
+				$userAvail = createBinary($user->sat_availability_start, $user->sat_availability_stop);
 				break;
 			}
 		if($userAvail & $shiftAvail == $shiftAvail){
@@ -113,12 +118,12 @@ function isAvail($shift, $user){
 	return false;
 }
 
-function createBinary($start_time, $end_time){
+public function createBinary($start_time, $end_time){
 	//convert the start and end times to an integer that represents a long binary number, return that number
 	//construct the middle part with all the 1's
 	
 	//calculate how many 1's we need and create a string
-	if(end_time == 0){
+	if($end_time == 0){
 		$repeat = floor((((2400-$start_time)/100) * 4)+.99);
 	}
 	else{
@@ -127,16 +132,22 @@ function createBinary($start_time, $end_time){
 	$string1 = str_repeat("1",$repeat);
 	
 	//calculate how many 0's we need
-	$repeat = floor(((2400 - $end_time) / 100)+.99);
-	$string0 = str_repeat("0",$repeat);
+	if ($end_time != 0){
+		$repeat = floor((((2400 - $end_time) / 100)* 4)+.99);
+		$string0 = str_repeat("0",$repeat);
+	}
+	else{
+		$string0 = "";
+	}
 	
 	//combine the two strings
 	$binary_value = $string1 . $string0;
 	
+	echo $binary_value;
 	return bindec($binary_value);
 }
 
-function noConflict($user, $shift){
+public function noConflict($user, $shift){
 	//returns true if there is no conflict with other shifts the user has, also, no double shifts
 	$shift_start_time = $shift->start_time;
 	$shift_end_time = $shift->end_time;
@@ -154,12 +165,6 @@ function noConflict($user, $shift){
 		}
 	}
 	return true;
-	
-function printSchedule(){
-	//this will take the list of shifts and print them all out.
-	
-	$shifts = $this->shifts_model->get_completed_shifts();
-}
 
 /*
 function scheduled_hours_sort($users){
@@ -179,7 +184,7 @@ function sortByHoursRemaining($a, $b) {
 }
 */
 
-function get_shift_type($shift){
+public function get_shift_type($shift){
 	//return the type of shift the shift is
 	$start_time = $shift->start_time;
 	$end_time = $shift->end_time;
@@ -198,7 +203,7 @@ function get_shift_type($shift){
 
 }
 
-function get_user_preference($user, $shift_type){
+public function get_user_preference($user, $shift_type){
 	//returns the integer that is the number representing the user preference
 	//1 means highly preferred, 4 means hated
 	switch ($shift_type) {

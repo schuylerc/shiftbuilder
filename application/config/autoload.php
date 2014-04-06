@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('users_model');
+$autoload['model'] = array('users_model', 'shifts_model', 'schedule_model');
 
 
 /* End of file autoload.php */

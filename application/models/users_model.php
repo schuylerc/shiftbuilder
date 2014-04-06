@@ -21,6 +21,7 @@ class users_model extends CI_Model
 		$this->db->join('jobs_users', 'jobs_users.user_id = users.id', 'right');
 		$this->db->where('job_id', $job_type_id);
 		$query = $this->db->get();
+		echo $query->result_array();
 		return $query->result_array();
 	}
 	
