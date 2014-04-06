@@ -51,15 +51,22 @@ class users_model extends CI_Model
 		$this->db->update('users', $update);
 	}
 	
-	public function update_user_avail($user_id, $sun, $mon, $tue, $wed, $thu, $fri, $sat){
+	public function update_user_avail($user_id, $sun_start, $mon_start, $tue_start, $wed_start, $thu_start, $fri_start, $sat_start, $sun_stop, $mon_stop, $tue_stop, $wed_stop, $thu_stop, $fri_stop, $sat_stop){
 		$update = array(
-				'sun_availability' => $sun,
-				'mon_availability' => $mon,
-				'tue_availability' => $tue,
-				'wed_availability' => $wed,
-				'thu_availability' => $thu,
-				'fri_availability' => $fri,
-				'sat_availability' => $sat	
+				'sun_availability_start' => $sun,
+				'mon_availability_start' => $mon,
+				'tue_availability_start' => $tue,
+				'wed_availability_start' => $wed,
+				'thu_availability_start' => $thu,
+				'fri_availability_start' => $fri,
+				'sat_availability_start' => $sat,
+				'sun_availability_stop' => $sun,
+				'mon_availability_stop' => $mon,
+				'tue_availability_stop' => $tue,
+				'wed_availability_stop' => $wed,
+				'thu_availability_stop' => $thu,
+				'fri_availability_stop' => $fri,
+				'sat_availability_stop' => $sat
 		);
 		$this->db->where('id', $user_id);
 		$this->db->update('users', $update);
