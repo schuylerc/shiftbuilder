@@ -83,7 +83,7 @@ form.login input[type="submit"]:hover
           <li data-slide="2" class="col-12 col-sm-2"><a id="menu-link-2" href="#slide-2" title="Next Section"><span class="text">About</span></a></li>
           <li data-slide="3" class="col-12 col-sm-2"><a id="menu-link-3" href="#slide-3" title="Next Section"><span class="text">Join</span></a></li>
           <li data-slide="4" class="col-12 col-sm-2"><a id="menu-link-4" href="#slide-4" title="Next Section"><span class="text">Contact</span></a></li>
-     <li class="col-12 col-sm-2"><a id="menu-link-8" href="/auth/login" title="Next Section">log In</a></li>
+     <li class="col-12 col-sm-2"><a id="menu-link-8" href="/auth/login/dash" title="Next Section">log In</a></li>
 
         </ul>
         <div class="row">
@@ -107,12 +107,12 @@ form.login input[type="submit"]:hover
       <div id="home-row-1" class="row clearfix">
         <div class="col-12">
           <h1 class="font-thin">Scheduling <span class="font-semibold">simplified</span></h1>
-          <h4 class="font-thin"><strong>SHIFT</strong>SCHEDULER dynamically creates schedules that take everyone into account</h4>
-          <a data-slide="2" class="btn btn-primary btn-md navigation-slide" style="margin-top: 10px;">How it works</a>
+          <h4 class="font-thin"><strong>SHIFT</strong>BUILDER dynamically creates <strong>schedules</strong> that take everyone into account</h4>
+          <a data-slide="2" class="btn btn-primary btn-md navigation-slide" style="margin-top: 10px;" href="#slide-3">Sign up now.</a>
         </div><!-- /col-12 -->
       </div><!-- /row -->
       <div id="home-row-2" class="row clearfix">
-        <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="3"><img src="/assets/home_files/cal_ico.png"></div><span>Scheduling</span></div>
+        <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="3"><img src="/assets/home_files/cal_ico.png" href="#slide-2"></div><span>Scheduling</span></div>
         <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="4"><img src="/assets/home_files/clock_ico.png"></div><span>Time Tracking</span></div>
         <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="5"><img src="/assets/home_files/phone_ico.png"></div><span>Shift Swapping</span></div>
       </div><!-- /row -->
@@ -159,7 +159,7 @@ form.login input[type="submit"]:hover
         <div class="hr">&nbsp;</div>
       </div><!-- /row -->
       <div class="row subtitle-row">
-          <div class="col-12 font-thin">ShiftBuilder was an open sourced app developed by 3 students from George Mason University while they attended BitCamp, A 36-hour hackathon hosted by The University of Maryland!</div>
+          <div class="col-12 font-thin">ShiftBuilder was an open sourced app developed by 3 students from George Mason University while they attended BitCamp, A 36-hour hackathon hosted by The University of Maryland!<br><a href="mailto:shiftbuilder@cumbiesites.com">shiftbuilder@cumbiesites.com</a> </div>
       </div><!-- /row -->
     </div><!-- /container -->
   </div><!-- /slide4 -->
