@@ -20,14 +20,15 @@ class schedule_model extends CI_Model
 	* 
 	*/
 		
-public function genSchedule($shifts){
+public function genSchedule(){
 	/**
 	 * itterate through each shift
 	 * 	find out who is available for given shift that can work the job type
 	 * 	pick the person that prefers the given shift that is furthest from there hours per week preference
 	 * 	after the person is selected for the shift, mark the shift as taken in the database by the given person
 	 */
-
+	$shifts = $this->shifts_model->get_needed_shifts();
+	
 	foreach($shifts as $shift){
 		$usersAvail = $this->whoisAvail($shift); 
 		$bestCanidate = $this->bestCanidate($shift, $usersAvail);
@@ -40,10 +41,10 @@ public function whoisAvail($shift){
 	 * returns a list of the people available to work a given shift
 	 * takes into account there ability to work a certain job
 	**/
-	$usersEligible = $this->shifts_model->get_eligible_users($shift->job_type);
+	$usersEligible = $this->users_model->get_eligible_users($shift->job_type);
 	$usersAvail = array();
 	foreach($usersEligible as $user){
-		if(isAvail($shift, $user)){
+		if($this->isAvail($shift, $user)){
 			$usersAvail[] = $user;
 		}
 	}
@@ -165,6 +166,7 @@ public function noConflict($user, $shift){
 		}
 	}
 	return true;
+}
 
 /*
 function scheduled_hours_sort($users){
@@ -236,7 +238,7 @@ public function get_user_preference($user, $shift_type){
 	
 	
 }
-
 }
+
 
 ?>
