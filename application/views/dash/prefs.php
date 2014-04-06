@@ -1,5 +1,6 @@
 <h1>My Preferences</h1>
 
+<p>Preferences can be changed at any time</p>
 
 <form class="form-horizontal" method="post">
 <fieldset>
@@ -70,6 +71,15 @@
   <div class="col-md-4">
   <input id="email_address" name="email_address" placeholder="" value="<?php echo $user->email; ?>" class="form-control input-md" required="" type="text">
     
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="max_hours">Maximum Hours</label>  
+  <div class="col-md-4">
+  <input id="max_hours" name="max_hours" type="text" placeholder="" value="<?php echo $user->max_hours; ?>" class="form-control input-md" required="">
+  <span class="help-block">(per week)</span>  
   </div>
 </div>
 

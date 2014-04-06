@@ -16,8 +16,9 @@ class Manage extends MY_Controller {
 	
 	}
 	public function employees(){
+		$data['users'] = $this->users_model->get_all_users();
 		$this->beginView();
-		$this->load->view('manage/employees');
+		$this->load->view('manage/employees', $data);
 		$this->endView();
 	}
 	public function jobs(){

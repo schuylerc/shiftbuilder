@@ -24,6 +24,7 @@ class Auth extends MY_Controller {
 	//redirect if needed, otherwise display the user list
 	function index()
 	{
+
 		$this->beginView();
 		if (!$this->ion_auth->logged_in())
 		{
@@ -46,7 +47,7 @@ class Auth extends MY_Controller {
 			{
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
-
+			redirect('/manage/employees', 'refresh');
 			$this->_render_page('auth/index', $this->data);
 		}
 		$this->endView();
@@ -208,7 +209,7 @@ class Auth extends MY_Controller {
 	//forgot password
 	function forgot_password()
 	{
-		$this->beginView();
+
 		$this->form_validation->set_rules('email', $this->lang->line('forgot_password_validation_email_label'), 'required');
 		if ($this->form_validation->run() == false)
 		{
@@ -254,7 +255,7 @@ class Auth extends MY_Controller {
 				redirect("auth/forgot_password", 'refresh');
 			}
 		}
-		$this->endView();
+
 	}
 
 	//reset password - final step for forgotten password
@@ -377,6 +378,7 @@ class Auth extends MY_Controller {
 	//deactivate the user
 	function deactivate($id = NULL)
 	{
+		$this->beginView();
 		$id = $this->config->item('use_mongodb', 'ion_auth') ? (string) $id : (int) $id;
 
 		$this->load->library('form_validation');
@@ -412,6 +414,7 @@ class Auth extends MY_Controller {
 			//redirect them back to the auth page
 			redirect('auth', 'refresh');
 		}
+		$this->endView();
 	}
 
 	//create a new user

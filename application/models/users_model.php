@@ -32,7 +32,7 @@ class users_model extends CI_Model
 		$this->db->update('users', $update);
 	}
 	
-	public function update_user_with_post($user_id, $first_name, $last_name, $phone, $email, $get_email, $get_texts, $pref_time_1, $pref_time_2, $pref_time_3, $pref_time_4){
+	public function update_user_with_post($user_id, $first_name, $last_name, $phone, $email, $get_email, $get_texts, $pref_time_1, $pref_time_2, $pref_time_3, $pref_time_4, $max_hours){
 		$update = array(
 				'first_name' => $first_name,
 				'last_name' => $last_name,
@@ -43,7 +43,8 @@ class users_model extends CI_Model
 				'pref_time_1' => $pref_time_1,
 				'pref_time_2' => $pref_time_2,
 				'pref_time_3' => $pref_time_3,
-				'pref_time_4' => $pref_time_4
+				'pref_time_4' => $pref_time_4,
+				'max_hours' => $max_hours
 				
 		);
 		
