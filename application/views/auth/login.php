@@ -237,7 +237,7 @@ form.login a:hover
     	    src: src
     	  }).hide().appendTo(ele).load(function() {
     	    $(this).remove();
-    	    ele.css('background-image', 'url('+src+')').fadeIn(5000);
+    	    ele.css('background-image', 'url('+src+')').fadeIn(4000);
     	  });
     	});
 	

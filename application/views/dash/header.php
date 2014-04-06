@@ -20,22 +20,38 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
         
-            <li class="active">
+            <li class="<?php if($this->uri->segment(1)=="dash" && ($this->uri->segment(2)=="" || $this->uri->segment(1)=="index")){ echo ' active'; } ?>">
               <a href="/dash">My Schedule</a>
             </li>
             <li>
-              <a href="/dash/prefs">Preferences</a>
+              <a href="/dash">My Availability</a>
             </li>
+            
+            
+            <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Employees</a></li>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="#">Shifts</a></li>
+            <li><a href="#">Schedules</a></li>
+            
+          </ul>
+        </li>
+            
             
   
           </ul>
 
          
 	<ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
+        <li class="dropdown<?php if($this->uri->segment(2)=="prefs"){ echo ' active'; } ?>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $user->email; ?> <b class="caret"></b></a>
           <ul class="dropdown-menu">
+            
+            <li><a href="/dash/prefs">Preferences</a></li>
             <li><a href="/auth/logout">Log Out</a></li>
+            
           </ul>
         </li>
       </ul>
