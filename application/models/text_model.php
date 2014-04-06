@@ -60,7 +60,7 @@ class text_model extends CI_Model
 			);
 		
 			// Display a confirmation message on the screen
-			echo "Sent message for $person <br>";
+			//echo "Sent message for $person <br>";
 		}
 	}	
 	

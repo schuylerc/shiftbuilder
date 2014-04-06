@@ -13,11 +13,7 @@ class Dash extends MY_Controller {
 		//user info
 		$user = $this->ion_auth->user()->row();
 		//get all shifts
-		$data['complete_shifts'] = $this->shifts_model->get_completed_shifts();
-		$data['needed_shifts'] = $this->shifts_model->get_needed_shifts();
-		//other vars
-			//$data['stuff'] = "cool";
-			//$data['stuff2'] = "cool";
+		$data['shifts'] = $this->shifts_model->get_taken_shifts($user->id);
 		
 		//begins the nav
 		$this->beginView();
@@ -26,6 +22,29 @@ class Dash extends MY_Controller {
 		//footer
 		$this->endView();
 	
+	}
+	public function request_coverage($shift_id){
+		$this->beginView();
+		echo "<br><br><div class='container'>";
+		//user info
+		$you = $this->ion_auth->user()->row();
+		$users = $this->users_model->get_all_users();
+		$shift = $this->shifts_model->get_shift_info($shift_id);
+		$shift = $shift[0];
+		$requests = array();
+		foreach ($users as $user){
+			if($user->id != $you->id && $user->get_texts)
+				$requests[] = $user->phone;
+		}
+		//send message out
+		$this->load->model('text_model');
+		//echo var_dump($shift);
+		$this->text_model->send_job_opening($requests, $shift->day." ".$shift->start_time."-".$shift->end_time);
+		//display message to user
+		echo"<h1>Coverage Requested</h1>";
+		echo "<p>We've let everyone else know that your shift is free. We'll text you if they grab it. Hang in there!</p>";
+		echo "<a href='/dash' class='btn btn-primary'>Okay</a></div>";
+		$this->endView();
 	}
 	public function prefs(){
 		$user = $this->ion_auth->user()->row();

@@ -67,4 +67,9 @@ class shifts_model extends CI_Model
 		$query = $this->db->get_where('shifts', array('taken_by' => $user_id));
 		return $query->result_object();
 	}
+	
+	public function get_shift_info($shift_id){
+		$query = $this->db->get_where('shifts', array('id' => $shift_id));
+		return $query->result_object();
+	}
 }
