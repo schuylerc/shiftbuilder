@@ -32,7 +32,6 @@ class schedule_model extends CI_Model {
 			$bestCanidate = $this->bestCanidate ($shift, $usersAvail);
 			if($bestCanidate!=NULL){
 				$this->shifts_model->update_taken_by ($shift->id, $bestCanidate['id']);
-				echo "UPDATED!";
 			}
 		}
 	}
@@ -45,10 +44,9 @@ class schedule_model extends CI_Model {
 		$usersAvail = array ();
 		foreach ( $usersEligible as $user ) {
 			if ($this->isAvail ( $shift, $user )) {
-				$usersAvail [] = $user;
+				array_push($usersAvail, $user);
 			}
 		}
-		
 		return $usersAvail;
 	}
 	public function bestCanidate($shift, $users) {
@@ -74,7 +72,6 @@ class schedule_model extends CI_Model {
 			$user_hours_left = ($user ['max_hours'] - $user ['hours_scheduled']);
 			$users_points[] = ($user_hours_left / (.5 * $userpref));
 		}
-		
 		$index = array_search (max($users_points), $users_points );
 		$userarr = $users[$index];
 		$this->users_model->add_scheduled_hours ( $shift_length, $userarr['id']);
@@ -88,38 +85,44 @@ class schedule_model extends CI_Model {
 		 * take the two long integers and BITAND them together, if the result is exactly the same as the shift availability, then the user is available for that shift.
 		 * also check to see if the user already has shifts that can conflict
 		 */
-		$shiftAvail = $this->createBinary ( $shift->start_time, $shift->end_time );
-		if ($this->noConflict ( $user, $shiftAvail )) {
+
+		if ($this->noConflict ( $user, $shift)) {
+			
 			switch ($shift->day) {
 				case 'sun' :
-					$userAvail = $this->createBinary ( $user ['sun_availability_start'], $user ['sun_availability_stop'] );
+					$userAvailStart = $user ['sun_availability_start'];
+					$userAvailStop = $user ['sun_availability_stop'];
 					break;
 				case 'mon' :
-					$userAvail = $this->createBinary ( $user ['mon_availability_start'], $user ['mon_availability_stop'] );
+					$userAvailStart = $user ['mon_availability_start'];
+					$userAvailStop = $user ['mon_availability_stop'];
 					break;
 				case 'tue' :
-					$userAvail = $this->createBinary ( $user ['tue_availability_start'], $user ['tue_availability_stop'] );
+					$userAvailStart = $user ['tue_availability_start'];
+					$userAvailStop = $user ['tue_availability_stop'];
 					break;
 				case 'wed' :
-					$userAvail = $this->createBinary ( $user ['wed_availability_start'], $user ['wed_availability_stop'] );
+					$userAvailStart = $user ['wed_availability_start'];
+					$userAvailStop = $user ['wed_availability_stop'];
 					break;
 				case 'thu' :
-					$userAvail = $this->createBinary ( $user ['thu_availability_start'], $user ['thu_availability_stop'] );
+					$userAvailStart = $user ['thu_availability_start'];
+					$userAvailStop = $user ['thu_availability_stop'];
 					break;
 				case 'fri' :
-					$userAvail = $this->createBinary ( $user ['fri_availability_start'], $user ['fri_availability_stop'] );
+					$userAvailStart = $user ['fri_availability_start'];
+					$userAvailStop = $user ['fri_availability_stop'];
 					break;
 				case 'sat' :
-					$userAvail = $this->createBinary ( $user ['sat_availability_start'], $user ['sat_availability_stop'] );
+					$userAvailStart = $user ['sat_availability_start'];
+					$userAvailStop = $user ['sat_availability_stop'];
 					break;
 			}
-			if ($userAvail & $shiftAvail == $shiftAvail) {
-				return true;
-			}
+			return (($shift->start_time <= $userAvailStart) &&  ($shift->end_time >= $userAvailStop));
 		}
 		return false;
 	}
-	public function createBinary($start_time, $end_time) {
+/*	public function createBinary($start_time, $end_time) {
 		// convert the start and end times to an integer that represents a long binary number, return that number
 		// construct the middle part with all the 1's
 		
@@ -146,21 +149,11 @@ class schedule_model extends CI_Model {
 		
 		return $binary_value;
 	}
+	
+*/
+	
 	public function noConflict($user, $shift) {
-		// returns true if there is no conflict with other shifts the user has, also, no double shifts
-		$shift_binary = $shift;
-		$user_shifts_taken = $this->shifts_model->get_taken_shifts ( $user ['id'] );
-		foreach ( $user_shifts_taken as $taken_shift ) {
-			$taken_start_time = $taken_shift->start_time;
-			$taken_end_time = $taken_shift->end_time;
-			$taken_binary = $this->createBinary ( $taken_start_time, $taken_end_time );
-			if ($taken_binary & $shift_binary != 0) {
-				return false;
-			}
-			if ($shift['day'] == $taken_shift['day']) {
-				return false;
-			}
-		}
+
 		return true;
 	}
 	
