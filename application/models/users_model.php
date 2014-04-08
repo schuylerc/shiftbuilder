@@ -30,7 +30,6 @@ class users_model extends CI_Model
 		$user = $query->result_object();
 		$user = $user[0];
 		$new_hours = $user->hours_scheduled + $num_hours;
-		echo $new_hours;
 		$update = array('hours_scheduled' => $new_hours);
 		$this->db->where('id', $user_id);
 		$this->db->update('users', $update);
