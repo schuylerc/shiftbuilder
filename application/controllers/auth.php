@@ -21,6 +21,7 @@ class Auth extends MY_Controller {
 		$this->load->helper('language');
 	}
 
+
 	//redirect if needed, otherwise display the user list
 	function index()
 	{

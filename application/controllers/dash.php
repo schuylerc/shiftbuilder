@@ -13,11 +13,7 @@ class Dash extends MY_Controller {
 		//user info
 		$user = $this->ion_auth->user()->row();
 		//get all shifts
-		$data['complete_shifts'] = $this->shifts_model->get_completed_shifts();
-		$data['needed_shifts'] = $this->shifts_model->get_needed_shifts();
-		//other vars
-			//$data['stuff'] = "cool";
-			//$data['stuff2'] = "cool";
+		$data['shifts'] = $this->shifts_model->get_taken_shifts($user->id);
 		
 		//begins the nav
 		$this->beginView();
@@ -26,6 +22,30 @@ class Dash extends MY_Controller {
 		//footer
 		$this->endView();
 	
+	}
+	public function request_coverage($shift_id){
+		$this->beginView();
+		echo "<br><br><div class='container'>";
+		//user info
+		$you = $this->ion_auth->user()->row();
+		$users = $this->users_model->get_all_users();
+		$shift = $this->shifts_model->get_shift_info($shift_id);
+		$shift = $shift[0];
+		$requests = array();
+		foreach ($users as $user){
+			if($user->id != $you->id && $user->get_texts)
+				$requests[] = $user->phone;
+		}
+		//send message out
+		$this->load->model('text_model');
+		//echo var_dump($shift);
+		$this->text_model->send_job_opening($requests, $shift->day." ".$shift->start_time."-".$shift->end_time);
+		//display message to user
+		echo"<h1>Coverage Requested</h1>";
+		echo "<p>We've let everyone else know that your shift is free. We'll text you if they grab it. Hang in there!</p>";
+		echo "<a href='/dash' class='btn btn-primary'>Okay</a></div>";
+		$this->endView();
+		$this->shifts_model->mark_shift_coverage_request($shift_id);
 	}
 	public function prefs(){
 		$user = $this->ion_auth->user()->row();
@@ -50,9 +70,9 @@ class Dash extends MY_Controller {
 		$data['user'] = $user;
 		//if changes need to be saved
 		if(sizeof($_POST)!=0){
-			//$mon_avail = calc th
-			$data['msg'] = "Your availability has been updated";
-			$this->users_model->update_user_avail($user->id, $sun_availability_start, $mon_availability_start, $tue_availability_start, $wed_availability_start, $thu_availability_start, $fri_availability_start, $sat_availability_start, $sun_availability_stop, $mon_availability_stop, $tue_availability_stop, $wed_availability_stop, $thu_availability_stop, $fri_availability_stop, $sat_availability_stop);
+			$this->users_model->update_user_avail($user->id, $_POST['sun_start'], $_POST['mon_start'], $_POST['tue_start'], $_POST['wed_start'], $_POST['thu_start'], $_POST['fri_start'], $_POST['sat_start'], $_POST['sun_stop'], $_POST['mon_stop'], $_POST['tue_stop'], $_POST['wed_stop'], $_POST['thu_stop'], $_POST['fri_stop'], $_POST['sat_stop']);
+			$data['msg'] = '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>Changes</strong> have been saved</div>';
+			
 		}
 		else{
 			$data['msg'] = "";

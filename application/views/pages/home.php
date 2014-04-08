@@ -144,7 +144,7 @@ form.login input[type="submit"]:hover
         <div class="hr">&nbsp;</div>
       </div><!-- /row -->
       <div class="row subtitle-row">
-          <div class="col-12 font-thin"><form class="login" action="/auth/login" method="post"><input type="text" name="email" placeholder="Your E-mail" style="text-align:center" autocomplete="off" /><button class="btn btn-primary" type="submit">Sign Up</button></form></div>
+          <div class="col-12 font-thin"><form class="login" action="/pages/request_access" method="post"><input type="text" name="email" placeholder="Your E-mail" style="text-align:center" autocomplete="off" /><button class="btn btn-primary" type="submit">Request Access</button></form></div>
       </div><!-- /row -->
     </div><!-- /container -->
   </div><!-- /slide3 -->

@@ -67,4 +67,22 @@ class shifts_model extends CI_Model
 		$query = $this->db->get_where('shifts', array('taken_by' => $user_id));
 		return $query->result_object();
 	}
+	
+	public function get_shift_info($shift_id){
+		$query = $this->db->get_where('shifts', array('id' => $shift_id));
+		return $query->result_object();
+	}
+	public function get_requested_shift(){
+		$query = $this->db->get_where('shifts', array('replace_request' => 1));
+		return $query->result_object();
+	}
+	
+	public function mark_shift_coverage_request($shift_id){
+		$this->db->update('shifts', array('replace_request' => 1), array('id' => $shift_id));
+		return true;
+	}
+	public function unmark_shift_coverage_request($shift_id){
+		$this->db->update('shifts', array('replace_request' => 0), array('id' => $shift_id));
+		return true;
+	}
 }
