@@ -1,4 +1,0 @@
-eventhack
-=========
-
-HackNC Competition Project
